@@ -2,11 +2,9 @@ import axios from 'axios'
 import {Dispatch} from "redux";
 
 export const fetchTransactions = () => {
-  console.log('fetchTransactions()');
   return async (dispatch: Dispatch<any>) => {
-    console.log('fetchTransactions2()');
     try {
-      let posts = await axios.get('https://jsonplaceholder.typicode.com/posts');
+      let posts = await axios.get('http://192.168.1.132:3000/transactions');
       dispatch({
         type: 'FETCH_TRANSACTIONS_SUCCESS',
         payload: posts.data,
