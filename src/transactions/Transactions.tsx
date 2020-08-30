@@ -8,12 +8,16 @@ import Table from "@material-ui/core/Table";
 import Paper from "@material-ui/core/Paper";
 import TableContainer from "@material-ui/core/TableContainer";
 import {format} from 'date-fns';
+import {chain} from 'lodash';
 
 export function Transactions() {
   const count = useSelector((state: any) => state.count);
   const transactions = useSelector((state: any) => state.transactions);
-  const top10Transactions = transactions
-    .slice(0, 10);
+  const top10Transactions = chain(transactions)
+    .sortBy((transaction) => transaction.postedDate)
+    .reverse()
+    .slice(0, 10)
+    .value();
   const dispatch = useDispatch();
 
   return (
