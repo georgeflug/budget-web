@@ -7,11 +7,13 @@ import TableHead from "@material-ui/core/TableHead";
 import Table from "@material-ui/core/Table";
 import Paper from "@material-ui/core/Paper";
 import TableContainer from "@material-ui/core/TableContainer";
+import {format} from 'date-fns';
 
 export function Transactions() {
   const count = useSelector((state: any) => state.count);
   const transactions = useSelector((state: any) => state.transactions);
-  const top10Transactions = transactions.slice(0, 10);
+  const top10Transactions = transactions
+    .slice(0, 10);
   const dispatch = useDispatch();
 
   return (
@@ -23,6 +25,7 @@ export function Transactions() {
         <Table>
           <TableHead>
             <TableRow>
+              <TableCell>Date</TableCell>
               <TableCell>Description</TableCell>
               <TableCell align="right">Amount</TableCell>
             </TableRow>
@@ -30,9 +33,8 @@ export function Transactions() {
           <TableBody>
             {top10Transactions.map((row: any) => (
               <TableRow key={row.recordId}>
-                <TableCell component="th" scope="row">
-                  {row.postedDescription}
-                </TableCell>
+                <TableCell>{format(row.postedDate, 'MMM dd')}</TableCell>
+                <TableCell>{row.postedDescription}</TableCell>
                 <TableCell align="right">{row.totalAmount}</TableCell>
               </TableRow>
             ))}
