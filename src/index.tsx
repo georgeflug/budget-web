@@ -4,9 +4,11 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import { Provider } from 'react-redux'
-import {configureStore} from "./configureStore";
+import {configureStore} from "./redux/configureStore";
+import {fetchTransactions} from "./redux/transactions/fetchTransactions";
 
 const store = configureStore();
+store.dispatch(fetchTransactions());
 
 ReactDOM.render(
   <React.StrictMode>
