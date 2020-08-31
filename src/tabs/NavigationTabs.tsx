@@ -2,8 +2,8 @@ import React from 'react';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import {Transactions} from "../transactions/Transactions";
-import {Budgets} from "../budgets/Budgets";
 import {AppBar} from '@material-ui/core';
+import {Budgets} from "../budgets/Budgets";
 
 export function NavigationTabs() {
   const [selectedTab, setSelectedTab] = React.useState(0);
