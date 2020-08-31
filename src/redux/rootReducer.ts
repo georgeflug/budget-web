@@ -1,3 +1,5 @@
+import {categoryFilterReducer} from "../transactions/filters/categoryFilterRedux";
+
 export function rootReducer(state: any = {}, action: any) {
   const count = state.count || 0;
   const transactions = state.transactions || [];
@@ -5,6 +7,6 @@ export function rootReducer(state: any = {}, action: any) {
     ...state,
     count: (action.type === 'ADD_COUNT') ? count + 1 : count,
     transactions: (action.type === 'FETCH_TRANSACTIONS_SUCCESS') ? action.payload : transactions,
-    categoryFilter: (action.type === 'UPDATE_CATEGORY_FILTER') ? action.payload : state.categoryFilter || 'To be determined',
+    categoryFilter: categoryFilterReducer(state, action),
   };
 }
