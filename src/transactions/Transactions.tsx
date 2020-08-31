@@ -4,8 +4,8 @@ import {chain} from 'lodash';
 import {TransactionsTable} from "./TransactionsTable";
 import {TransactionFilters} from "./TransactionFilters";
 import {Transaction} from "./Transaction";
-import {useCategoryFilter} from "./filters/categoryFilterRedux";
-import {filterByCategory} from "./filters/filterByCategory";
+import {useCategoryFilter} from "./filters/categoryFilter/categoryFilterRedux";
+import {filterByCategory} from "./filters/categoryFilter/filterByCategory";
 
 export function Transactions() {
   const {categoryFilter} = useCategoryFilter();

@@ -1,5 +1,5 @@
 import {useSelector} from "react-redux";
-import {useDispatchForAction} from "../../redux/useDispatchForAction";
+import {useDispatchForAction} from "../../../redux/useDispatchForAction";
 
 const SET_CATEGORY_FILTER_ACTION = 'SET_CATEGORY_FILTER';
 

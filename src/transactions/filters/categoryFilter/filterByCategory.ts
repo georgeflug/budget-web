@@ -1,4 +1,4 @@
-import {Transaction} from "../Transaction";
+import {Transaction} from "../../Transaction";
 
 export const filterByCategory = (transaction: Transaction, category: string) => {
   if (category === 'All Categories') {

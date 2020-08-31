@@ -1,4 +1,4 @@
-import {categoryFilterReducer} from "../transactions/filters/categoryFilterRedux";
+import {categoryFilterReducer} from "../transactions/filters/categoryFilter/categoryFilterRedux";
 
 export function rootReducer(state: any = {}, action: any) {
   const count = state.count || 0;

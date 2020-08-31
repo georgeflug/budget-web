@@ -1,6 +1,6 @@
 import React from "react";
 import {FormControl, InputLabel, MenuItem, Select} from "@material-ui/core";
-import {budgetCategories} from "../../budgets/budget-categories";
+import {budgetCategories} from "../../../budgets/budget-categories";
 import {useCategoryFilter} from "./categoryFilterRedux";
 
 export function CategoryFilter() {

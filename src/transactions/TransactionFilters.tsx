@@ -1,5 +1,5 @@
 import React from "react";
-import {CategoryFilter} from "./filters/CategoryFilter";
+import {CategoryFilter} from "./filters/categoryFilter/CategoryFilter";
 
 export function TransactionFilters() {
   return (
