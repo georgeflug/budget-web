@@ -1,7 +1,7 @@
 import React from "react";
 import {useSelector} from "react-redux";
 
-export function Budgets() {
+export function BudgetTab() {
   const count = useSelector((state: any) => state.count);
 
   return (

@@ -1,13 +1,13 @@
 import React from 'react';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
-import {Transactions} from "../transactions/Transactions";
+import {TransactionTab} from "./TransactionTab";
 import {AppBar} from '@material-ui/core';
-import {Budgets} from "../budgets/Budgets";
+import {BudgetTab} from "./BudgetTab";
 import {InboxTab} from "./InboxTab";
 
 export function NavigationTabs() {
-  const [selectedTab, setSelectedTab] = React.useState(0);
+  const [selectedTab, setSelectedTab] = React.useState(1);
 
   const handleTabChanged = (event: React.ChangeEvent<{}>, newValue: any) => {
     setSelectedTab(newValue);
@@ -23,8 +23,8 @@ export function NavigationTabs() {
         </Tabs>
       </AppBar>
       { selectedTab === 0 && ( <InboxTab/> )}
-      { selectedTab === 1 && ( <Transactions/> )}
-      { selectedTab === 2 && ( <Budgets/> )}
+      { selectedTab === 1 && ( <TransactionTab/> )}
+      { selectedTab === 2 && ( <BudgetTab/> )}
     </div>
   );
 }

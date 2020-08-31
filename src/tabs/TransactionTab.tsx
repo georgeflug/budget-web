@@ -1,15 +1,15 @@
 import React from "react";
 import {useSelector} from "react-redux";
 import {chain} from 'lodash';
-import {TransactionsTable} from "./TransactionsTable";
-import {TransactionFilters} from "./TransactionFilters";
-import {Transaction} from "./Transaction";
-import {useCategoryFilter} from "./filters/categoryFilter/categoryFilterRedux";
-import {filterByCategory} from "./filters/categoryFilter/filterByCategory";
-import {useDateFilter} from "./filters/dateFilter/dateFilterRedux";
-import {filterByDate} from "./filters/dateFilter/filterByDate";
+import {TransactionsTable} from "../transactions/TransactionsTable";
+import {TransactionFilters} from "../transactions/TransactionFilters";
+import {Transaction} from "../transactions/Transaction";
+import {useCategoryFilter} from "../transactions/filters/categoryFilter/categoryFilterRedux";
+import {filterByCategory} from "../transactions/filters/categoryFilter/filterByCategory";
+import {useDateFilter} from "../transactions/filters/dateFilter/dateFilterRedux";
+import {filterByDate} from "../transactions/filters/dateFilter/filterByDate";
 
-export function Transactions() {
+export function TransactionTab() {
   const {categoryFilter} = useCategoryFilter();
   const {dateRange} = useDateFilter();
   const transactions = useSelector((state: any) => state.transactions) as Transaction[];
