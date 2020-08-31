@@ -20,6 +20,7 @@ export const fetchTransactions = () => {
 function normalizeDates(transactions: any[]) {
   transactions.forEach(transaction => {
     transaction.createdAt = parseISO(transaction.createdAt);
+    transaction.modifiedAt = parseISO(transaction.modifiedAt);
     transaction.postedDate = parseISO(transaction.postedDate);
   });
 }
