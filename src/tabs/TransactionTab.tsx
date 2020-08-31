@@ -3,7 +3,7 @@ import {useSelector} from "react-redux";
 import {chain} from 'lodash';
 import {TransactionsTable} from "../transactions/TransactionsTable";
 import {TransactionFilters} from "../transactions/TransactionFilters";
-import {Transaction} from "../transactions/Transaction";
+import {Transaction} from "../transactions/transactionModel";
 import {useCategoryFilter} from "../transactions/filters/categoryFilter/categoryFilterRedux";
 import {filterByCategory} from "../transactions/filters/categoryFilter/filterByCategory";
 import {useDateFilter} from "../transactions/filters/dateFilter/dateFilterRedux";

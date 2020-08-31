@@ -1,7 +1,7 @@
 import React from "react";
 import {useSelector} from "react-redux";
 import {chain} from 'lodash';
-import {Transaction} from "../transactions/Transaction";
+import {Transaction} from "../transactions/transactionModel";
 import {filterByCategory} from "../transactions/filters/categoryFilter/filterByCategory";
 import {TransactionsTable} from "../transactions/TransactionsTable";
 

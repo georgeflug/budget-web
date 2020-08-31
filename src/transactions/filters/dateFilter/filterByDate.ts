@@ -1,4 +1,4 @@
-import {Transaction} from "../../Transaction";
+import {Transaction} from "../../transactionModel";
 import {DateRange} from "./dateOptions";
 import {SmartDate} from "../../../util/smart-date";
 

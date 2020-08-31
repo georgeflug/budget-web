@@ -7,7 +7,7 @@ import Table from "@material-ui/core/Table";
 import Paper from "@material-ui/core/Paper";
 import TableContainer from "@material-ui/core/TableContainer";
 import {format} from 'date-fns';
-import {Transaction} from "./Transaction";
+import {Transaction} from "./transactionModel";
 
 export function TransactionsTable(props: { transactions: Transaction[] }) {
   return (
