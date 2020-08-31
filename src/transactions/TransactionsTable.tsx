@@ -22,7 +22,7 @@ export function TransactionsTable(props: { transactions: Transaction[] }) {
             </TableRow>
           </TableHead>
           <TableBody>
-            {props.transactions.map((row: any) => (
+            {props.transactions.map((row: Transaction) => (
               <TableRow key={row.recordId}>
                 <TableCell>{format(row.postedDate, 'MMM dd')}</TableCell>
                 <TableCell>{row.postedDescription}</TableCell>

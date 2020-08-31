@@ -21,7 +21,7 @@ export function DateFilter() {
           onChange={handleChange}
         >
           { dateOptions.map(option => (
-            <MenuItem value={option.id}>{option.displayName}</MenuItem>
+            <MenuItem key={option.id} value={option.id}>{option.displayName}</MenuItem>
           ))}
         </Select>
       </FormControl>
