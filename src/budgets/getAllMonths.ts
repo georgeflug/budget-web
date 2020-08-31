@@ -1,11 +1,11 @@
 import {addMonths} from "date-fns";
+import {firstDate} from "../util/firstDate";
 
 export function getAllMonths() {
   const today = new Date();
-  const firstDay = new Date(2018, 8, 1);
 
   const months = [];
-  let currentMonth = firstDay;
+  let currentMonth = firstDate;
   while (currentMonth <= today) {
     months.push(currentMonth);
     currentMonth = addMonths(currentMonth, 1);

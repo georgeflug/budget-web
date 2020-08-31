@@ -8,6 +8,7 @@ import Paper from "@material-ui/core/Paper";
 import TableContainer from "@material-ui/core/TableContainer";
 import {format} from 'date-fns';
 import {Transaction} from "./transactionModel";
+import {formatCurrencyExact} from "../currency/formatCurrency";
 
 export function TransactionsTable(props: { transactions: Transaction[] }) {
   return (
@@ -26,7 +27,7 @@ export function TransactionsTable(props: { transactions: Transaction[] }) {
               <TableRow key={row.recordId}>
                 <TableCell>{format(row.postedDate, 'MMM dd')}</TableCell>
                 <TableCell>{row.postedDescription}</TableCell>
-                <TableCell align="right">{row.totalAmount}</TableCell>
+                <TableCell align="right">{formatCurrencyExact(row.totalAmount)}</TableCell>
               </TableRow>
             ))}
           </TableBody>

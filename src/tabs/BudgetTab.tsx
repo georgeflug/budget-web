@@ -12,6 +12,9 @@ import {getAllMonths} from "../budgets/getAllMonths";
 import {useSelector} from "react-redux";
 import {Transaction} from "../transactions/transactionModel";
 import {getMonthTotal} from "../budgets/getMonthTotal";
+import {hasAllocation} from "../budgets/hasAllocation";
+import {getRemainingAllocation} from "../budgets/getRemainingAllocation";
+import {formatCurrencyRounded} from "../currency/formatCurrency";
 
 export function BudgetTab() {
   const months = getAllMonths().reverse();
@@ -32,7 +35,14 @@ export function BudgetTab() {
               <TableRow key={category}>
                 <TableCell>{category}</TableCell>
                 {months.map(month => (
-                  <TableCell>{getMonthTotal(transactions, category, month)}</TableCell>
+                  <TableCell>
+                    {formatCurrencyRounded(getMonthTotal(transactions, category, month))}
+                    {hasAllocation(category) && (
+                      <div>
+                        <br/><span>{formatCurrencyRounded(getRemainingAllocation(transactions, category, month))} left</span>
+                      </div>
+                    )}
+                  </TableCell>
                 ))}
               </TableRow>
             ))}
