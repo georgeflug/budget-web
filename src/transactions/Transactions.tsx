@@ -9,11 +9,10 @@ export function Transactions() {
   const count = useSelector((state: any) => state.count);
   const categoryFilter = useSelector((state: any) => state.categoryFilter);
   const transactions = useSelector((state: any) => state.transactions) as Transaction[];
-  const top10Transactions = chain(transactions)
+  const filteredTransactions = chain(transactions)
     .filter(transaction => transaction.splits[0].budget === categoryFilter)
     .sortBy((transaction) => transaction.postedDate)
     .reverse()
-    .slice(0, 10)
     .value();
   const dispatch = useDispatch();
 
@@ -23,7 +22,7 @@ export function Transactions() {
       <button onClick={() => dispatch({type: "ADD_COUNT"})}>Add to count</button>
 
       <TransactionFilters/>
-      <TransactionsTable transactions={top10Transactions}/>
+      <TransactionsTable transactions={filteredTransactions}/>
     </div>
   );
 }
