@@ -5,12 +5,13 @@ import {TransactionsTable} from "./TransactionsTable";
 import {TransactionFilters} from "./TransactionFilters";
 import {Transaction} from "./Transaction";
 import {useCategoryFilter} from "./filters/categoryFilterRedux";
+import {filterByCategory} from "./filters/filterByCategory";
 
 export function Transactions() {
   const {categoryFilter} = useCategoryFilter();
   const transactions = useSelector((state: any) => state.transactions) as Transaction[];
   const filteredTransactions = chain(transactions)
-    .filter(transaction => transaction.splits[0].budget === categoryFilter)
+    .filter(transaction => filterByCategory(transaction, categoryFilter))
     .sortBy((transaction) => transaction.postedDate)
     .reverse()
     .value();

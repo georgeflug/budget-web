@@ -20,6 +20,7 @@ export function CategoryFilter() {
           value={categoryFilter}
           onChange={handleChange}
         >
+          <MenuItem value="All Categories">All Categories</MenuItem>
           {budgetCategories.map(category => (
             <MenuItem value={category}>{category}</MenuItem>
           ))}
