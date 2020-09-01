@@ -5,6 +5,7 @@ import {Transaction} from "./transactionModel";
 import axios from "axios";
 import {useDispatch} from "react-redux";
 import {fetchTransactions} from "../redux/transactions/fetchTransactions";
+import {budgetAxios} from "../util/budgetAxios";
 
 export function EditableCategory(props: { row: Transaction }) {
   const row = props.row;
@@ -22,7 +23,7 @@ export function EditableCategory(props: { row: Transaction }) {
     }
     setSaving(true);
 
-    axios.put(`http://192.168.1.132:3000/transactions/${row.recordId}`, {
+    budgetAxios.put(`/transactions/${row.recordId}`, {
       recordId: row.recordId,
       version: row.version,
       totalAmount: row.amount,

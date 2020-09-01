@@ -1,7 +1,7 @@
-import axios from 'axios'
 import {Dispatch} from "redux";
 import {parseISO} from 'date-fns';
 import {Transaction} from "../../transactions/transactionModel";
+import {budgetAxios} from "../../util/budgetAxios";
 
 type ApiTransactionSplit = {
   amount: number,
@@ -26,13 +26,13 @@ type ApiTransaction = {
 export const fetchTransactions = () => {
   return async (dispatch: Dispatch<any>) => {
     try {
-      const transactions = await axios.get('http://192.168.1.132:3000/transactions');
+      const transactions = await budgetAxios.get('/transactions');
       const normalized = normalizeData(transactions.data);
       dispatch({
         type: 'FETCH_TRANSACTIONS_SUCCESS',
         payload: normalized,
       });
-    } catch(e){
+    } catch (e) {
       console.log(e)
     }
   }
