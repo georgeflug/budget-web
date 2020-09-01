@@ -6,7 +6,7 @@ import {SearchFilter} from "./filters/searchFilter/SearchFilter";
 
 export function TransactionFilters() {
   return (
-    <Grid container>
+    <Grid container spacing={4}>
       <Grid item xs={4} md={2} lg={1}>
         <CategoryFilter/>
       </Grid>

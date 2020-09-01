@@ -11,13 +11,14 @@ export function DateFilter() {
   }
 
   return (
-    <FormControl>
+    <FormControl fullWidth>
       <InputLabel id="date-filter-label">Date Range</InputLabel>
       <Select
         labelId="date-filter-label"
         id="date-filter-select"
         value={dateFilter}
         onChange={handleChange}
+        fullWidth
       >
         {dateOptions.map(option => (
           <MenuItem key={option.id} value={option.id}>{option.displayName}</MenuItem>

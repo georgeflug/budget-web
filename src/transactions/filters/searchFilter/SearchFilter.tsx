@@ -10,12 +10,13 @@ export function SearchFilter() {
   }
 
   return (
-    <FormControl>
+    <FormControl fullWidth>
       <InputLabel id="search-filter-label">Search</InputLabel>
       <Input
         id="search-filter-select"
         value={searchFilter}
         onChange={handleChange}
+        fullWidth
       />
     </FormControl>
   );

@@ -11,13 +11,14 @@ export function CategoryFilter() {
   }
 
   return (
-    <FormControl>
+    <FormControl fullWidth>
       <InputLabel id="category-filter-label">Category</InputLabel>
       <Select
         labelId="category-filter-label"
         id="category-filter-select"
         value={categoryFilter}
         onChange={handleChange}
+        fullWidth
       >
         <MenuItem key="All Categories" value="All Categories">All Categories</MenuItem>
         {budgetCategories.map(category => (
