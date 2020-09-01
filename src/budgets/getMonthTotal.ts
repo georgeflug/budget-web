@@ -1,15 +1,11 @@
 import {Transaction} from "../transactions/transactionModel";
-import { chain } from "lodash";
+import {chain} from "lodash";
 import {filterByCategory} from "../transactions/filters/categoryFilter/filterByCategory";
 import {filterByDate} from "../transactions/filters/dateFilter/filterByDate";
-import {DateRange} from "../transactions/filters/dateFilter/dateOptions";
-import {endOfMonth, startOfMonth} from "date-fns";
+import {getOneMonthRange} from "./getOneMonthRange";
 
 export function getMonthTotal(transactions: Transaction[], category: string, month: Date): number {
-  const dateRange: DateRange = {
-    start: startOfMonth(month),
-    end: endOfMonth(month),
-  };
+  const dateRange = getOneMonthRange(month);
 
   return chain(transactions)
     .filter(transaction => filterByCategory(transaction, category))
