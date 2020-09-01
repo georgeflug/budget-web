@@ -7,7 +7,7 @@ import {BudgetTab} from "./BudgetTab";
 import {InboxTab} from "./InboxTab";
 
 export function NavigationTabs() {
-  const [selectedTab, setSelectedTab] = React.useState(1);
+  const [selectedTab, setSelectedTab] = React.useState(0);
 
   const handleTabChanged = (event: React.ChangeEvent<{}>, newValue: any) => {
     setSelectedTab(newValue);
