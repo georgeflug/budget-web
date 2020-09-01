@@ -1,22 +1,27 @@
 import {CircularProgress, FormControl, Input} from "@material-ui/core";
 import React, {useState} from "react";
 import {Transaction} from "./transactionModel";
-import {useDispatch} from "react-redux";
+import {useTransactionUpdater} from "./useTransactionUpdater";
 
 export function EditableNote(props: { row: Transaction }) {
   const row = props.row;
-  const [note, setNote] = useState(row.notes);
+  const [notes, setNotes] = useState(row.notes);
   const [saving, setSaving] = useState(false);
-  const dispatch = useDispatch();
+  const {updateTransaction} = useTransactionUpdater();
 
   function handleChange(event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) {
-    setNote(event.target.value as string);
+    setNotes(event.target.value as string);
   }
 
   function handleBlur(event: React.FocusEvent<HTMLTextAreaElement | HTMLInputElement>) {
-    setSaving(!saving);
-    // todo: save the note
-    console.log('blur');
+    if (notes === row.notes) {
+      return;
+    }
+    setSaving(true);
+
+    updateTransaction(row, {notes})
+      .catch(e => console.log(e))
+      .finally(() => setSaving(false));
   }
 
   return (
@@ -24,7 +29,7 @@ export function EditableNote(props: { row: Transaction }) {
       <FormControl style={{minWidth: 120}}>
         <Input
           id="edit-note-input"
-          value={note}
+          value={notes}
           onBlur={handleBlur}
           onChange={handleChange}
         />

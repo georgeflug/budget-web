@@ -23,7 +23,6 @@ export function EditableCategory(props: { row: Transaction }) {
     updateTransaction(row, {category})
       .catch(e => console.log(e))
       .finally(() => setSaving(false));
-    setSaving(false);
   }, [category, row, updateTransaction]);
 
   return (
