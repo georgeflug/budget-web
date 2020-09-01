@@ -3,11 +3,14 @@ import {budgetCategories} from "../budgets/budget-categories";
 import React, {useEffect, useState} from "react";
 import {Transaction} from "./transactionModel";
 import axios from "axios";
+import {useDispatch} from "react-redux";
+import {fetchTransactions} from "../redux/transactions/fetchTransactions";
 
 export function EditableCategory(props: { row: Transaction }) {
   const row = props.row;
   const [category, setCategory] = useState(row.splits[0].budget);
   const [saving, setSaving] = useState(false);
+  const dispatch = useDispatch();
 
   function handleChange(event: React.ChangeEvent<{ name?: string; value: unknown }>) {
     setCategory(event.target.value as string);
@@ -32,6 +35,7 @@ export function EditableCategory(props: { row: Transaction }) {
       ],
     }).then(() => {
       setSaving(false);
+      dispatch(fetchTransactions());
     }).catch(e => {
       setSaving(false);
       alert(e);
