@@ -34,6 +34,7 @@ export function TransactionsTable(props: { transactions: Transaction[] }) {
               <TableCell>Date</TableCell>
               <TableCell>Category</TableCell>
               <TableCell>Description</TableCell>
+              <TableCell>Notes</TableCell>
               <TableCell align="right">Amount</TableCell>
             </TableRow>
           </TableHead>

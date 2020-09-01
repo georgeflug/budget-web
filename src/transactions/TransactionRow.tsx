@@ -5,6 +5,7 @@ import {format} from 'date-fns';
 import {Transaction} from "./transactionModel";
 import {formatCurrencyExact} from "../currency/formatCurrency";
 import {EditableCategory} from "./EditableCategory";
+import {EditableNote} from "./EditableNote";
 
 export function TransactionRow(props: { row: Transaction }) {
   const row = props.row;
@@ -15,6 +16,7 @@ export function TransactionRow(props: { row: Transaction }) {
         <TableCell>{format(row.postedDate, 'MMM dd, yyyy')}</TableCell>
         <TableCell><EditableCategory row={row}/></TableCell>
         <TableCell>{row.postedDescription}</TableCell>
+        <TableCell><EditableNote row={row}/></TableCell>
         <TableCell align="right">{formatCurrencyExact(row.amount)}</TableCell>
       </TableRow>
     </React.Fragment>
