@@ -3,7 +3,7 @@ import {useDispatchForAction} from "../../../redux/useDispatchForAction";
 import {dateOptions, DateRange} from "./dateOptions";
 
 const SET_DATE_FILTER_ACTION = 'SET_DATE_FILTER';
-const DEFAULT_DATE_FILTER = 'thisMonth';
+const DEFAULT_DATE_FILTER = 'allTime';
 
 export const dateFilterReducer = (state: any = {}, action: any) => {
   if (action.type === SET_DATE_FILTER_ACTION) {
