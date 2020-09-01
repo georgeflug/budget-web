@@ -9,16 +9,10 @@ import TableBody from "@material-ui/core/TableBody";
 import {format} from "date-fns";
 import {budgetCategories} from "../budgets/budget-categories";
 import {getAllMonths} from "../budgets/getAllMonths";
-import {useSelector} from "react-redux";
-import {Transaction} from "../transactions/transactionModel";
-import {getMonthTotal} from "../budgets/getMonthTotal";
-import {getAllocation, hasAllocation} from "../budgets/hasAllocation";
-import {getRemainingAllocation} from "../budgets/getRemainingAllocation";
-import {formatCurrencyRounded} from "../currency/formatCurrency";
+import {BudgetRow} from "../budgets/BudgetRow";
 
 export function BudgetTab() {
   const months = getAllMonths().reverse();
-  const transactions = useSelector((state: any) => state.transactions) as Transaction[];
 
   return (
     <div>
@@ -31,23 +25,7 @@ export function BudgetTab() {
             </TableRow>
           </TableHead>
           <TableBody>
-            {budgetCategories.map(category => (
-              <TableRow key={category}>
-                <TableCell>{category}{hasAllocation(category) && (
-                  <div><br/><span>{formatCurrencyRounded(getAllocation(category))}/month</span></div>
-                )}</TableCell>
-                {months.map(month => (
-                  <TableCell>
-                    {formatCurrencyRounded(getMonthTotal(transactions, category, month))}
-                    {hasAllocation(category) && (
-                      <div>
-                        <br/><span>{formatCurrencyRounded(getRemainingAllocation(transactions, category, month))} left</span>
-                      </div>
-                    )}
-                  </TableCell>
-                ))}
-              </TableRow>
-            ))}
+            {budgetCategories.map(category => (<BudgetRow category={category}/>))}
           </TableBody>
         </Table>
       </TableContainer>
