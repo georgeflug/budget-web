@@ -1,27 +1,33 @@
-import {CircularProgress, FormControl, Input} from "@material-ui/core";
+import {FormControl, Input} from "@material-ui/core";
 import React, {useState} from "react";
 import {Transaction} from "./transactionModel";
 import {useTransactionUpdater} from "./useTransactionUpdater";
+import {SaveState} from "../saveState/saveState";
+import {InlineSaveState} from "../saveState/InlineSaveState";
 
 export function EditableNote(props: { row: Transaction }) {
   const row = props.row;
   const [notes, setNotes] = useState(row.notes);
-  const [saving, setSaving] = useState(false);
+  const [saveState, setSaveState] = useState<SaveState>(SaveState.Unchanged);
   const {updateTransaction} = useTransactionUpdater();
 
   function handleChange(event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) {
     setNotes(event.target.value as string);
+    setSaveState(SaveState.Changed);
   }
 
-  function handleBlur(event: React.FocusEvent<HTMLTextAreaElement | HTMLInputElement>) {
+  function handleBlur() {
     if (notes === row.notes) {
       return;
     }
-    setSaving(true);
+    setSaveState(SaveState.Saving);
 
     updateTransaction(row, {notes})
-      .catch(e => console.log(e))
-      .finally(() => setSaving(false));
+      .then(() => setSaveState(SaveState.Saved))
+      .catch(e => {
+        console.log(e);
+        setSaveState(SaveState.Error)
+      });
   }
 
   return (
@@ -34,7 +40,7 @@ export function EditableNote(props: { row: Transaction }) {
           onChange={handleChange}
         />
       </FormControl>
-      {saving && (<CircularProgress/>)}
+      <InlineSaveState saveState={saveState}/>
     </React.Fragment>
   )
 }

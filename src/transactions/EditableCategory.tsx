@@ -1,13 +1,15 @@
-import {CircularProgress, FormControl, MenuItem, Select} from "@material-ui/core";
+import {FormControl, MenuItem, Select} from "@material-ui/core";
 import {budgetCategories} from "../budgets/budget-categories";
 import React, {useEffect, useState} from "react";
 import {Transaction} from "./transactionModel";
 import {useTransactionUpdater} from "./useTransactionUpdater";
+import {InlineSaveState} from "../saveState/InlineSaveState";
+import {SaveState} from "../saveState/saveState";
 
 export function EditableCategory(props: { row: Transaction }) {
   const row = props.row;
   const [category, setCategory] = useState(row.category);
-  const [saving, setSaving] = useState(false);
+  const [saveState, setSaveState] = useState<SaveState>(SaveState.Unchanged);
   const {updateTransaction} = useTransactionUpdater();
 
   function handleChange(event: React.ChangeEvent<{ name?: string; value: unknown }>) {
@@ -18,11 +20,14 @@ export function EditableCategory(props: { row: Transaction }) {
     if (category === row.category) {
       return;
     }
-    setSaving(true);
+    setSaveState(SaveState.Saving);
 
     updateTransaction(row, {category})
-      .catch(e => console.log(e))
-      .finally(() => setSaving(false));
+      .then(() => setSaveState(SaveState.Saved))
+      .catch(e => {
+        console.log(e);
+        setSaveState(SaveState.Error)
+      });
   }, [category, row, updateTransaction]);
 
   return (
@@ -38,7 +43,7 @@ export function EditableCategory(props: { row: Transaction }) {
           ))}
         </Select>
       </FormControl>
-      {saving && (<CircularProgress/>)}
+      <InlineSaveState saveState={saveState}/>
     </React.Fragment>
   )
 }
