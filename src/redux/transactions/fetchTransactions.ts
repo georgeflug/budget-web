@@ -20,7 +20,7 @@ type ApiTransaction = {
   postedDate: string, // "2019-07-02T00:00:00.000Z"
   postedDescription: string,
   splits: ApiTransactionSplit[],
-  totalAmount: 2156.12
+  totalAmount: number,
 }
 
 export const fetchTransactions = () => {
@@ -40,9 +40,10 @@ export const fetchTransactions = () => {
 
 function normalizeData(transactions: ApiTransaction[]): Transaction[] {
   return transactions.flatMap(transaction => {
-    return transaction.splits.map(split => ({
+    return transaction.splits.map((split, splitIndex) => ({
       recordId: transaction.recordId,
       version: transaction.version,
+      splitId: splitIndex,
       createdAt: parseISO(transaction.createdAt),
       modifiedAt: parseISO(transaction.modifiedAt),
       postedDate: parseISO(transaction.postedDate),

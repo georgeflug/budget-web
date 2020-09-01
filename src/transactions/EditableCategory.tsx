@@ -2,16 +2,13 @@ import {CircularProgress, FormControl, MenuItem, Select} from "@material-ui/core
 import {budgetCategories} from "../budgets/budget-categories";
 import React, {useEffect, useState} from "react";
 import {Transaction} from "./transactionModel";
-import axios from "axios";
-import {useDispatch} from "react-redux";
-import {fetchTransactions} from "../redux/transactions/fetchTransactions";
-import {budgetAxios} from "../util/budgetAxios";
+import {useTransactionUpdater} from "./useTransactionUpdater";
 
 export function EditableCategory(props: { row: Transaction }) {
   const row = props.row;
   const [category, setCategory] = useState(row.category);
   const [saving, setSaving] = useState(false);
-  const dispatch = useDispatch();
+  const {updateTransaction} = useTransactionUpdater();
 
   function handleChange(event: React.ChangeEvent<{ name?: string; value: unknown }>) {
     setCategory(event.target.value as string);
@@ -23,25 +20,11 @@ export function EditableCategory(props: { row: Transaction }) {
     }
     setSaving(true);
 
-    budgetAxios.put(`/transactions/${row.recordId}`, {
-      recordId: row.recordId,
-      version: row.version,
-      totalAmount: row.amount,
-      splits: [
-        {
-          amount: row.amount,
-          budget: category,
-          description: row.notes,
-        }
-      ],
-    }).then(() => {
-      setSaving(false);
-      dispatch(fetchTransactions());
-    }).catch(e => {
-      setSaving(false);
-      alert(e);
-    });
-  }, [category]);
+    updateTransaction(row, {category})
+      .catch(e => console.log(e))
+      .finally(() => setSaving(false));
+    setSaving(false);
+  }, [category, row, updateTransaction]);
 
   return (
     <React.Fragment>
