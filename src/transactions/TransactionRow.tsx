@@ -12,7 +12,7 @@ export function TransactionRow(props: { row: Transaction }) {
   return (
     <React.Fragment>
       <TableRow key={row.recordId}>
-        <TableCell>{format(row.postedDate, 'MMM dd')}</TableCell>
+        <TableCell>{format(row.postedDate, 'MMM dd, yyyy')}</TableCell>
         <TableCell><EditableCategory row={row}/></TableCell>
         <TableCell>{row.postedDescription}</TableCell>
         <TableCell align="right">{formatCurrencyExact(row.totalAmount)}</TableCell>
