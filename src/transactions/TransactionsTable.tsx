@@ -6,9 +6,8 @@ import TableHead from "@material-ui/core/TableHead";
 import Table from "@material-ui/core/Table";
 import Paper from "@material-ui/core/Paper";
 import TableContainer from "@material-ui/core/TableContainer";
-import {format} from 'date-fns';
 import {Transaction} from "./transactionModel";
-import {formatCurrencyExact} from "../currency/formatCurrency";
+import {TransactionRow} from "./TransactionRow";
 
 export function TransactionsTable(props: { transactions: Transaction[] }) {
   return (
@@ -18,18 +17,13 @@ export function TransactionsTable(props: { transactions: Transaction[] }) {
           <TableHead>
             <TableRow>
               <TableCell>Date</TableCell>
+              <TableCell>Category</TableCell>
               <TableCell>Description</TableCell>
               <TableCell align="right">Amount</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
-            {props.transactions.map((row: Transaction) => (
-              <TableRow key={row.recordId}>
-                <TableCell>{format(row.postedDate, 'MMM dd')}</TableCell>
-                <TableCell>{row.postedDescription}</TableCell>
-                <TableCell align="right">{formatCurrencyExact(row.totalAmount)}</TableCell>
-              </TableRow>
-            ))}
+            {props.transactions.map((row: Transaction) => (<TransactionRow row={row}/>))}
           </TableBody>
         </Table>
       </TableContainer>
