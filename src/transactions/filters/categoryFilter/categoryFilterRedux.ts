@@ -7,7 +7,7 @@ export const categoryFilterReducer = (state: any = {}, action: any) => {
   if (action.type === SET_CATEGORY_FILTER_ACTION) {
     return action.payload;
   }
-  return state.categoryFilter || 'To be determined';
+  return state.categoryFilter || 'All Categories';
 };
 
 export const useCategoryFilter = () => {
