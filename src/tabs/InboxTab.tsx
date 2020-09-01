@@ -9,7 +9,7 @@ export function InboxTab() {
   const transactions = useSelector((state: any) => state.transactions) as Transaction[];
   const filteredTransactions = chain(transactions)
     .filter(transaction => filterByCategory(transaction, 'To be determined'))
-    .sortBy((transaction) => transaction.postedDate)
+    .sortBy(transaction => transaction.postedDate)
     .reverse()
     .value();
 

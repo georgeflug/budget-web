@@ -8,7 +8,7 @@ import {fetchTransactions} from "../redux/transactions/fetchTransactions";
 
 export function EditableCategory(props: { row: Transaction }) {
   const row = props.row;
-  const [category, setCategory] = useState(row.splits[0].budget);
+  const [category, setCategory] = useState(row.category);
   const [saving, setSaving] = useState(false);
   const dispatch = useDispatch();
 
@@ -17,7 +17,7 @@ export function EditableCategory(props: { row: Transaction }) {
   }
 
   useEffect(() => {
-    if (category === row.splits[0].budget) {
+    if (category === row.category) {
       return;
     }
     setSaving(true);
@@ -25,12 +25,12 @@ export function EditableCategory(props: { row: Transaction }) {
     axios.put(`http://192.168.1.132:3000/transactions/${row.recordId}`, {
       recordId: row.recordId,
       version: row.version,
-      totalAmount: row.totalAmount,
+      totalAmount: row.amount,
       splits: [
         {
-          amount: row.splits[0].amount,
+          amount: row.amount,
           budget: category,
-          description: row.splits[0].description,
+          description: row.notes,
         }
       ],
     }).then(() => {

@@ -36,7 +36,7 @@ export function getRemainingAllocation(transactions: Transaction[], category: st
   const spent = chain(transactions)
     .filter(transaction => filterByCategory(transaction, category))
     .filter(transaction => filterByDate(transaction, dateRange))
-    .sumBy(transaction => transaction.totalAmount)
+    .sumBy(transaction => transaction.amount)
     .valueOf();
 
   const allocated = getAllocated(category, month);

@@ -14,6 +14,6 @@ export function getMonthTotal(transactions: Transaction[], category: string, mon
   return chain(transactions)
     .filter(transaction => filterByCategory(transaction, category))
     .filter(transaction => filterByDate(transaction, dateRange))
-    .sumBy(transaction => transaction.totalAmount)
+    .sumBy(transaction => transaction.amount)
     .valueOf();
 }

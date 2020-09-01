@@ -16,7 +16,7 @@ export function TransactionTab() {
   const filteredTransactions = chain(transactions)
     .filter(transaction => filterByCategory(transaction, categoryFilter))
     .filter(transaction => filterByDate(transaction, dateRange))
-    .sortBy((transaction) => transaction.postedDate)
+    .sortBy(transaction => transaction.postedDate)
     .reverse()
     .value();
 
