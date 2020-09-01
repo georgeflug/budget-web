@@ -1,6 +1,6 @@
 import {FormControl, MenuItem, Select} from "@material-ui/core";
 import {budgetCategories} from "../budgets/budget-categories";
-import React, {useEffect, useState} from "react";
+import React, {useState} from "react";
 import {Transaction} from "./transactionModel";
 import {useTransactionUpdater} from "./useTransactionUpdater";
 import {InlineSaveState} from "../saveState/InlineSaveState";
@@ -13,22 +13,18 @@ export function EditableCategory(props: { row: Transaction }) {
   const {updateTransaction} = useTransactionUpdater();
 
   function handleChange(event: React.ChangeEvent<{ name?: string; value: unknown }>) {
-    setCategory(event.target.value as string);
-  }
-
-  useEffect(() => {
-    if (category === row.category) {
-      return;
+    const newCategory = event.target.value as string;
+    setCategory(newCategory);
+    if (category !== row.category) {
+      setSaveState(SaveState.Saving);
+      updateTransaction(row, {category})
+        .then(() => setSaveState(SaveState.Saved))
+        .catch(e => {
+          console.log(e);
+          setSaveState(SaveState.Error)
+        });
     }
-    setSaveState(SaveState.Saving);
-
-    updateTransaction(row, {category})
-      .then(() => setSaveState(SaveState.Saved))
-      .catch(e => {
-        console.log(e);
-        setSaveState(SaveState.Error)
-      });
-  }, [category, row, updateTransaction]);
+  }
 
   return (
     <React.Fragment>
