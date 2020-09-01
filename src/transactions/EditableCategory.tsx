@@ -15,9 +15,9 @@ export function EditableCategory(props: { row: Transaction }) {
   function handleChange(event: React.ChangeEvent<{ name?: string; value: unknown }>) {
     const newCategory = event.target.value as string;
     setCategory(newCategory);
-    if (category !== row.category) {
+    if (newCategory !== row.category) {
       setSaveState(SaveState.Saving);
-      updateTransaction(row, {category})
+      updateTransaction(row, {category: newCategory})
         .then(() => setSaveState(SaveState.Saved))
         .catch(e => {
           console.log(e);
