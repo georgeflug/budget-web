@@ -1,4 +1,4 @@
-import {FormControl, Input} from "@material-ui/core";
+import {Input} from "@material-ui/core";
 import React, {useState} from "react";
 import {Transaction} from "./transactionModel";
 import {useTransactionUpdater} from "./useTransactionUpdater";
@@ -32,14 +32,14 @@ export function EditableNote(props: { row: Transaction }) {
 
   return (
     <React.Fragment>
-      <FormControl style={{minWidth: 120}}>
-        <Input
-          id="edit-note-input"
-          value={notes}
-          onBlur={handleBlur}
-          onChange={handleChange}
-        />
-      </FormControl>
+      <Input
+        id="edit-note-input"
+        value={notes}
+        onBlur={handleBlur}
+        onChange={handleChange}
+        fullWidth
+        style={{minWidth: 120}}
+      />
       <InlineSaveState saveState={saveState}/>
     </React.Fragment>
   )

@@ -1,4 +1,4 @@
-import {FormControl, MenuItem, Select} from "@material-ui/core";
+import {MenuItem, Select} from "@material-ui/core";
 import {budgetCategories} from "../budgets/budget-categories";
 import React, {useState} from "react";
 import {Transaction} from "./transactionModel";
@@ -28,17 +28,17 @@ export function EditableCategory(props: { row: Transaction }) {
 
   return (
     <React.Fragment>
-      <FormControl style={{minWidth: 120}}>
-        <Select
-          id="edit-category-select"
-          value={category}
-          onChange={handleChange}
-        >
-          {budgetCategories.map(category => (
-            <MenuItem key={category} value={category}>{category}</MenuItem>
-          ))}
-        </Select>
-      </FormControl>
+      <Select
+        id="edit-category-select"
+        value={category}
+        onChange={handleChange}
+        fullWidth
+        style={{minWidth: 120}}
+      >
+        {budgetCategories.map(category => (
+          <MenuItem key={category} value={category}>{category}</MenuItem>
+        ))}
+      </Select>
       <InlineSaveState saveState={saveState}/>
     </React.Fragment>
   )

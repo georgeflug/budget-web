@@ -1,5 +1,5 @@
 import React from "react";
-import {FormControl, InputLabel, MenuItem, Select} from "@material-ui/core";
+import {InputLabel, MenuItem, Select} from "@material-ui/core";
 import {budgetCategories} from "../../../budgets/budget-categories";
 import {useCategoryFilter} from "./categoryFilterRedux";
 
@@ -12,20 +12,18 @@ export function CategoryFilter() {
 
   return (
     <div>
-      <FormControl>
-        <InputLabel id="category-filter-label">Category</InputLabel>
-        <Select
-          labelId="category-filter-label"
-          id="category-filter-select"
-          value={categoryFilter}
-          onChange={handleChange}
-        >
-          <MenuItem key="All Categories" value="All Categories">All Categories</MenuItem>
-          {budgetCategories.map(category => (
-            <MenuItem key={category} value={category}>{category}</MenuItem>
-          ))}
-        </Select>
-      </FormControl>
+      <InputLabel id="category-filter-label">Category</InputLabel>
+      <Select
+        labelId="category-filter-label"
+        id="category-filter-select"
+        value={categoryFilter}
+        onChange={handleChange}
+      >
+        <MenuItem key="All Categories" value="All Categories">All Categories</MenuItem>
+        {budgetCategories.map(category => (
+          <MenuItem key={category} value={category}>{category}</MenuItem>
+        ))}
+      </Select>
     </div>
   );
 }

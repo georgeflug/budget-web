@@ -1,5 +1,5 @@
 import React from "react";
-import {FormControl, InputLabel, MenuItem, Select} from "@material-ui/core";
+import {InputLabel, MenuItem, Select} from "@material-ui/core";
 import {useDateFilter} from "./dateFilterRedux";
 import {dateOptions} from "./dateOptions";
 
@@ -12,19 +12,17 @@ export function DateFilter() {
 
   return (
     <div>
-      <FormControl>
-        <InputLabel id="date-filter-label">Date Range</InputLabel>
-        <Select
-          labelId="date-filter-label"
-          id="date-filter-select"
-          value={dateFilter}
-          onChange={handleChange}
-        >
-          { dateOptions.map(option => (
-            <MenuItem key={option.id} value={option.id}>{option.displayName}</MenuItem>
-          ))}
-        </Select>
-      </FormControl>
+      <InputLabel id="date-filter-label">Date Range</InputLabel>
+      <Select
+        labelId="date-filter-label"
+        id="date-filter-select"
+        value={dateFilter}
+        onChange={handleChange}
+      >
+        {dateOptions.map(option => (
+          <MenuItem key={option.id} value={option.id}>{option.displayName}</MenuItem>
+        ))}
+      </Select>
     </div>
   );
 }
