@@ -1,5 +1,5 @@
 import React from "react";
-import {Input, InputLabel} from "@material-ui/core";
+import {FormControl, Input, InputLabel} from "@material-ui/core";
 import {useSearchFilter} from "./searchFilterRedux";
 
 export function SearchFilter() {
@@ -10,13 +10,13 @@ export function SearchFilter() {
   }
 
   return (
-    <div>
+    <FormControl>
       <InputLabel id="search-filter-label">Search</InputLabel>
       <Input
         id="search-filter-select"
         value={searchFilter}
         onChange={handleChange}
       />
-    </div>
+    </FormControl>
   );
 }
