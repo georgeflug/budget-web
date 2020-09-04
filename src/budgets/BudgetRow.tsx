@@ -15,6 +15,7 @@ import {getOneMonthRange} from "./getOneMonthRange";
 import {chain} from "lodash";
 import {isEqual} from "date-fns";
 import {makeStyles} from "@material-ui/core/styles";
+import {formatCurrencyAllocation} from "../currency/formatCurrencyAllocation";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -79,7 +80,7 @@ export function BudgetRow(props: { category: string }) {
             {formatCurrencyRounded(getMonthTotal(transactions, category, month))}
             {hasAllocation(category) && (
               <div>
-                <br/><span>{formatCurrencyRounded(getRemainingAllocation(transactions, category, month))} left</span>
+                <br/><span>{formatCurrencyAllocation(getRemainingAllocation(transactions, category, month))}</span>
               </div>
             )}
           </TableCell>
