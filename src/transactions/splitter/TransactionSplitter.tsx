@@ -31,7 +31,7 @@ export function TransactionSplitter(props: {
 
   const handleSplitButtonClicked = () => {
     setSplits([...splits, {
-      category: '',
+      category: splits[0].category,
       amount: 0.00,
       notes: '',
     }]);
