@@ -16,7 +16,7 @@ export function BudgetTab() {
 
   return (
     <div>
-      <TableContainer component={Paper}>
+      <TableContainer component={Paper} style={{maxHeight: '850px'}}>
         <Table>
           <TableHead>
             <TableRow>
