@@ -1,14 +1,15 @@
 import React, {useState} from "react";
-import {Button, Divider, Grid, Paper} from "@material-ui/core";
+import {Button, Grid, Paper} from "@material-ui/core";
 import {Transaction} from "../transactionModel";
 import {useSelector} from "react-redux";
-import {chain} from "lodash";
+import {chain, sumBy} from "lodash";
 import CallSplitIcon from '@material-ui/icons/CallSplit';
 import {Split} from "./split";
 import {TransactionSplitterRow} from "./TransactionSplitterRow";
 import {SaveState} from "../../saveState/saveState";
 import {useTransactionSplitterUpdater} from "./useTransactionSplitterUpdater";
 import {InlineSaveState} from "../../saveState/InlineSaveState";
+import {formatCurrencyExact} from "../../currency/formatCurrency";
 
 export function TransactionSplitter(props: {
   row: Transaction,
@@ -100,6 +101,11 @@ export function TransactionSplitter(props: {
             onRemoveButtonClicked={() => handleRemoveButtonClicked(index)}
           />
         ))}
+        {splits.length > 1 && (
+          <Grid item xs={12}>
+            <em>{formatCurrencyExact(sumBy(splits, split => split.amount))} total</em>
+          </Grid>
+        )}
         <Grid item xs={6}>
           <Button
             color="primary"
@@ -109,7 +115,6 @@ export function TransactionSplitter(props: {
             Split
           </Button>
         </Grid>
-        <Divider/>
         <Grid item xs={6} container justify="flex-end" spacing={2} direction="row">
           <Grid item>
             <Button
