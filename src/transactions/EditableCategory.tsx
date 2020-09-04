@@ -1,4 +1,4 @@
-import {MenuItem, Select} from "@material-ui/core";
+import {Box, MenuItem, Select} from "@material-ui/core";
 import {budgetCategories} from "../budgets/budget-categories";
 import React, {useEffect, useState} from "react";
 import {Transaction} from "./transactionModel";
@@ -29,19 +29,18 @@ export function EditableCategory(props: { row: Transaction }) {
   }
 
   return (
-    <React.Fragment>
+    <Box style={{display: 'flex'}}>
       <Select
         id="edit-category-select"
         value={category}
         onChange={handleChange}
-        fullWidth
-        style={{minWidth: 120}}
+        style={{flex: 1, minWidth: 120}}
       >
         {budgetCategories.map(category => (
           <MenuItem key={category} value={category}>{category}</MenuItem>
         ))}
       </Select>
       <InlineSaveState saveState={saveState}/>
-    </React.Fragment>
+    </Box>
   )
 }

@@ -1,4 +1,4 @@
-import {Input} from "@material-ui/core";
+import {Box, Input} from "@material-ui/core";
 import React, {useEffect, useState} from "react";
 import {Transaction} from "./transactionModel";
 import {useTransactionUpdater} from "./useTransactionUpdater";
@@ -33,15 +33,14 @@ export function EditableNote(props: { row: Transaction }) {
   }
 
   return (
-    <React.Fragment>
+    <Box style={{display: 'flex'}}>
       <Input
         value={notes}
         onBlur={handleBlur}
         onChange={handleChange}
-        fullWidth
-        style={{minWidth: 120}}
+        style={{flex: 1, minWidth: 120}}
       />
       <InlineSaveState saveState={saveState}/>
-    </React.Fragment>
+    </Box>
   )
 }
