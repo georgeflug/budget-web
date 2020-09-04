@@ -1,5 +1,5 @@
 import {Input} from "@material-ui/core";
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {Transaction} from "./transactionModel";
 import {useTransactionUpdater} from "./useTransactionUpdater";
 import {SaveState} from "../saveState/saveState";
@@ -10,6 +10,8 @@ export function EditableNote(props: { row: Transaction }) {
   const [notes, setNotes] = useState(row.notes);
   const [saveState, setSaveState] = useState<SaveState>(SaveState.Unchanged);
   const {updateTransaction} = useTransactionUpdater();
+
+  useEffect(() => setNotes(row.notes), [row.notes]);
 
   function handleChange(event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) {
     setNotes(event.target.value as string);

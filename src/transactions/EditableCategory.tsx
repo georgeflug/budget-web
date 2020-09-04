@@ -1,6 +1,6 @@
 import {MenuItem, Select} from "@material-ui/core";
 import {budgetCategories} from "../budgets/budget-categories";
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {Transaction} from "./transactionModel";
 import {useTransactionUpdater} from "./useTransactionUpdater";
 import {InlineSaveState} from "../saveState/InlineSaveState";
@@ -11,6 +11,8 @@ export function EditableCategory(props: { row: Transaction }) {
   const [category, setCategory] = useState(row.category);
   const [saveState, setSaveState] = useState<SaveState>(SaveState.Unchanged);
   const {updateTransaction} = useTransactionUpdater();
+
+  useEffect(() => setCategory(row.category), [row.category]);
 
   function handleChange(event: React.ChangeEvent<{ name?: string; value: unknown }>) {
     const newCategory = event.target.value as string;
