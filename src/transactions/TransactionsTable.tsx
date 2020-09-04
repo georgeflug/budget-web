@@ -8,6 +8,7 @@ import Paper from "@material-ui/core/Paper";
 import TableContainer from "@material-ui/core/TableContainer";
 import {Transaction} from "./transactionModel";
 import {TransactionRow} from "./TransactionRow";
+import {format} from "date-fns";
 
 export function TransactionsTable(props: { transactions: Transaction[] }) {
   const transactions = props.transactions;
@@ -40,6 +41,11 @@ export function TransactionsTable(props: { transactions: Transaction[] }) {
           </TableHead>
           <TableBody>
             {pagedTransactions.map((row: Transaction) => (<TransactionRow key={row.key} row={row}/>))}
+            {pagedTransactions.length === 0 && (
+              <TableRow>
+                <TableCell colSpan={5}><em>No transactions found.</em></TableCell>
+              </TableRow>
+            )}
           </TableBody>
         </Table>
       </TableContainer>
