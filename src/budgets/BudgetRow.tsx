@@ -65,12 +65,13 @@ export function BudgetRow(props: { category: string }) {
 
   return (
     <React.Fragment>
-      <TableRow key={category}>
+      <TableRow>
         <TableCell>{category}{hasAllocation(category) && (
           <div><br/><span>{formatCurrencyRounded(getAllocation(category))}/month</span></div>
         )}</TableCell>
         {months.map(month => (
           <TableCell
+            key={month.getTime()}
             aria-checked={!!(selectedMonth && isEqual(selectedMonth, month))}
             className={classes.cell}
             onClick={() => handleCellClick(month)}

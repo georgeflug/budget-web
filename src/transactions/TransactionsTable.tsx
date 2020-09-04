@@ -39,7 +39,7 @@ export function TransactionsTable(props: { transactions: Transaction[] }) {
             </TableRow>
           </TableHead>
           <TableBody>
-            {pagedTransactions.map((row: Transaction) => (<TransactionRow key={row.recordId} row={row}/>))}
+            {pagedTransactions.map((row: Transaction) => (<TransactionRow key={row.key} row={row}/>))}
           </TableBody>
         </Table>
       </TableContainer>

@@ -21,11 +21,11 @@ export function BudgetTab() {
           <TableHead>
             <TableRow>
               <TableCell>Category</TableCell>
-              {months.map(month => (<TableCell>{format(month, "MMM yyyy")}</TableCell>))}
+              {months.map(month => (<TableCell key={month.getTime()}>{format(month, "MMM yyyy")}</TableCell>))}
             </TableRow>
           </TableHead>
           <TableBody>
-            {budgetCategories.map(category => (<BudgetRow category={category}/>))}
+            {budgetCategories.map(category => (<BudgetRow key={category} category={category}/>))}
           </TableBody>
         </Table>
       </TableContainer>

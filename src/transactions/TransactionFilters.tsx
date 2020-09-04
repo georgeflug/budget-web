@@ -7,13 +7,13 @@ import {SearchFilter} from "./filters/searchFilter/SearchFilter";
 export function TransactionFilters() {
   return (
     <Grid container spacing={4}>
-      <Grid item xs={4} md={2} lg={1}>
+      <Grid item xs={4} md={2}>
         <CategoryFilter/>
       </Grid>
-      <Grid item xs={4} md={2} lg={1}>
+      <Grid item xs={4} md={2}>
         <DateFilter/>
       </Grid>
-      <Grid item xs={4} md={2} lg={1}>
+      <Grid item xs={4} md={2}>
         <SearchFilter/>
       </Grid>
     </Grid>

@@ -56,7 +56,6 @@ export function TransactionSplitterRow(props: {
       </Grid>
       <Grid item xs={5}>
         <Input
-          id="edit-note-input"
           value={split.notes}
           onChange={handleNotesChanged}
           placeholder="Notes"

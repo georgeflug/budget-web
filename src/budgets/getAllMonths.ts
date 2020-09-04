@@ -1,7 +1,7 @@
 import {addMonths} from "date-fns";
 import {firstDate} from "../util/firstDate";
 
-export function getAllMonths() {
+export function getAllMonths(): Date[] {
   const today = new Date();
 
   const months = [];

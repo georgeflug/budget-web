@@ -35,7 +35,6 @@ export function EditableNote(props: { row: Transaction }) {
   return (
     <React.Fragment>
       <Input
-        id="edit-note-input"
         value={notes}
         onBlur={handleBlur}
         onChange={handleChange}

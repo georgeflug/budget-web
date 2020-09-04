@@ -2,6 +2,7 @@ export type Transaction = {
   recordId: number,
   version: number,
   splitId: number,
+  key: string,
   createdAt: Date,
   modifiedAt: Date,
   postedDate: Date,

@@ -93,6 +93,7 @@ export function TransactionSplitter(props: {
       <Grid container spacing={2}>
         {splits.map((split, index) => (
           <TransactionSplitterRow
+            key={index}
             split={split}
             disableAmount={index === 0}
             onChange={(newSplit) => handleOnChange(newSplit, index)}
