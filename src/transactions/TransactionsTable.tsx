@@ -32,14 +32,14 @@ export function TransactionsTable(props: { transactions: Transaction[] }) {
           <TableHead>
             <TableRow>
               <TableCell>Date</TableCell>
+              <TableCell align="right">Amount</TableCell>
               <TableCell>Category</TableCell>
               <TableCell>Description</TableCell>
               <TableCell>Notes</TableCell>
-              <TableCell align="right">Amount</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
-            {pagedTransactions.map((row: Transaction) => (<TransactionRow row={row}/>))}
+            {pagedTransactions.map((row: Transaction) => (<TransactionRow key={row.recordId} row={row}/>))}
           </TableBody>
         </Table>
       </TableContainer>
