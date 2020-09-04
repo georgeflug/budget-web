@@ -86,7 +86,7 @@ export function BudgetRow(props: { category: string }) {
         ))}
       </TableRow>
       <TableRow>
-        <TableCell style={{paddingBottom: 0, paddingTop: 0}} colSpan={13}>
+        <TableCell style={selectedMonth ? {} : {paddingBottom: 0, paddingTop: 0}} colSpan={13}>
           <Collapse in={!!selectedMonth} timeout="auto" unmountOnExit>
             <TransactionsTable transactions={selectedTransactions}/>
           </Collapse>
