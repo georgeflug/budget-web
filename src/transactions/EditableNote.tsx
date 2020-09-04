@@ -14,8 +14,9 @@ export function EditableNote(props: { row: Transaction }) {
   useEffect(() => setNotes(row.notes), [row.notes]);
 
   function handleChange(event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) {
-    setNotes(event.target.value as string);
-    setSaveState(SaveState.Changed);
+    const newNotes = event.target.value as string;
+    setNotes(newNotes);
+    setSaveState(newNotes !== row.notes ? SaveState.Changed : SaveState.Unchanged);
   }
 
   function handleBlur() {
