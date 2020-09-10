@@ -47,7 +47,7 @@ function normalizeData(transactions: ApiTransaction[]): Transaction[] {
       key: `${transaction.recordId}:${splitIndex}`,
       createdAt: parseISO(transaction.createdAt),
       modifiedAt: parseISO(transaction.modifiedAt),
-      postedDate: parseISO(transaction.postedDate),
+      postedDate: parseISO(transaction.postedDate.replace(/T.+/, '')),
       account: transaction.account,
       postedDescription: transaction.postedDescription,
       isSplit: transaction.splits.length > 1,
