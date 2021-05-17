@@ -4,7 +4,7 @@ import {formatCurrency} from "../../../currency/formatCurrency";
 let rememberedTokens: string[] = [];
 let lastSearchText = '';
 
-export const filterBySearchText = (transaction: Transaction, searchText: string) => {
+export const filterBySearchText = (transaction: Transaction, searchText: string): boolean => {
   if (!searchText) {
     return true;
   }
