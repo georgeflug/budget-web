@@ -19,6 +19,6 @@ export const filterBySearchText = (transaction: Transaction, searchText: string)
 };
 
 function splitByWordOrQuotes(text: string): string[] {
-  return (text.match(/(\w+)|"([^"]+)"/g) || [])
+  return (text.match(/([\w\.]+)|"([^"]+)"/g) || [])
     .map(token => token.replace(/^"(.*)"$/, '$1'))
 }
