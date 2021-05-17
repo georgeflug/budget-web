@@ -3,6 +3,10 @@ import React from "react";
 const numberFormatExact = new Intl.NumberFormat('en-US', {style: 'currency', currency: 'USD'});
 const numberFormatRounded = new Intl.NumberFormat('en-US', {style: 'currency', currency: 'USD', minimumFractionDigits: 0, maximumFractionDigits: 0});
 
+export function formatCurrency(amount: number) {
+  return numberFormatExact.format(amount)
+}
+
 export function formatCurrencyExact(amount: number) {
   return goGreen(amount, numberFormatExact);
 }

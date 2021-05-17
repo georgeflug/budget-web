@@ -1,4 +1,5 @@
 import {Transaction} from "../../transactionModel";
+import {formatCurrency} from "../../../currency/formatCurrency";
 
 let rememberedTokens: string[] = [];
 let lastSearchText = '';
@@ -15,7 +16,7 @@ export const filterBySearchText = (transaction: Transaction, searchText: string)
     .filter(token => !!token)
     .some(token => (transaction.postedDescription || '').toLowerCase().includes(token)
       || (transaction.notes || '').toLowerCase().includes(token)
-      || (transaction.amount || '').toString().includes(token));
+      || formatCurrency(transaction.amount).toString().includes(token));
 };
 
 function splitByWordOrQuotes(text: string): string[] {
