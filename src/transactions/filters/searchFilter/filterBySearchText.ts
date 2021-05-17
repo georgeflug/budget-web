@@ -14,7 +14,8 @@ export const filterBySearchText = (transaction: Transaction, searchText: string)
   return rememberedTokens
     .filter(token => !!token)
     .some(token => (transaction.postedDescription || '').toLowerCase().includes(token)
-      || (transaction.notes || '').toLowerCase().includes(token));
+      || (transaction.notes || '').toLowerCase().includes(token)
+      || (transaction.amount || '').toString().includes(token));
 };
 
 function splitByWordOrQuotes(text: string): string[] {
