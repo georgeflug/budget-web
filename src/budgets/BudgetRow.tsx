@@ -24,6 +24,12 @@ const useStyles = makeStyles((theme) => ({
   container: {
     maxHeight: 440,
   },
+  firstColumn: {
+    position: "sticky",
+    left: 0,
+    background: "white",
+    borderRight: "1px solid rgba(224, 224, 224, 1)"
+  },
   cell: {
     cursor: 'pointer',
     "&:hover": {
@@ -67,9 +73,11 @@ export function BudgetRow(props: { category: string }) {
   return (
     <React.Fragment>
       <TableRow>
-        <TableCell>{category}{hasAllocation(category) && (
-          <div><br/><span>{formatCurrencyRounded(getAllocation(category))}/month</span></div>
-        )}</TableCell>
+        <TableCell className={classes.firstColumn}>
+          {category}{hasAllocation(category) && (
+            <div><br/><span>{formatCurrencyRounded(getAllocation(category))}/month</span></div>
+          )}
+        </TableCell>
         {months.map(month => (
           <TableCell
             key={month.getTime()}
